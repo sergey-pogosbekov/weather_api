@@ -1,0 +1,82 @@
+<div *ngIf="data !== null && isFav === false">
+    <div *ngIf="data | async as ct">
+        <table class="table table-striped" *ngIf="isFav === false &&  ct !== null && ct !== undefined ">
+            <thead>
+                <tr>
+                    <th width="50"></th>
+                    <th>City name</th>
+                    <th>Weather Temperature</th>
+                    <th>Date of measure</th>
+                </tr>
+            </thead>
+            <tbody  >
+                <tr *ngFor="let todo of ct" >
+                    <td>
+                        <div >
+                            <input *ngIf="todo.cityInfo" type="checkbox" [checked]="todo.cityInfo.isFav" (change)="changeStatus(todo.cityInfoId)" /> 
+                        </div>
+                    </td>
+                    <td>
+                        <div >
+                            <app-todo [city]="todo"></app-todo>
+                        </div>
+                    </td>
+                    <td >
+                        <ng-container>
+                                <div *ngIf="todo">
+                                    <button  type="button" class="btn btn-sm btn-outline-info" (click)="edit(todo)"><i class="fa fa-zoom"></i>Get weather</button>
+                                    <button  type="button" class="btn btn-sm btn-outline-info" (click)="changeStatus(todo.cityInfoId)"><i class="fa fa-pencil"></i>
+                                        {{ todo.cityInfo && !todo.cityInfo.isFav? 'Favorite': 'Remove from favorites' }}
+                                    </button>
+                                    </div>
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div *ngIf="eventEmitter !== undefined && isFav && favs  !== undefined">
+<!-- Favourites:-->
+<div *ngIf="favs  | async as fv">
+<table class="table table-striped" *ngIf="fv !== undefined"> 
+    <thead>
+        <tr>
+            <th width="50"></th>
+            <th>City name</th>
+            <th>Weather Temperature</th>
+            <th>Date of measure</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let todo of fv">
+            <td *ngIf="todo != undefined">
+                <div >
+                    <div >
+                        <input *ngIf="todo.cityInfo" type="checkbox" [checked]="todo.cityInfo.isFav"
+                            (change)="changeStatus(todo.cityInfoId)" />
+                    </div>
+                </div>
+            </td>
+            <td>
+                <app-todo *ngIf="todo" [city]="todo"></app-todo>
+            </td>
+            <td>
+                <ng-container>
+                    <button type="button" class="btn btn-sm btn-outline-info" (click)="edit(todo)"><i
+                            class="fa fa-zoom"></i>Get weather</button>
+                    <button type="button" class="btn btn-sm btn-outline-info" (click)="changeStatus(todo.cityInfoId)"><i
+                            class="fa fa-pencil"></i>
+                        {{ todo.cityInfo && !todo.cityInfo.isFav? 'Favorite': 'Remove from favorites' }}
+                    </button>
+              
+                </ng-container>
+            </td>
+        </tr>
+    </tbody>
+</table> 
+</div>
+
+</div>

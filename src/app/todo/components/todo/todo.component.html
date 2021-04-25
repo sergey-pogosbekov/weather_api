@@ -1,0 +1,25 @@
+<span *ngIf="city" >
+    <span >
+        <span *ngIf="(city != undefined && city.cityInfo)">
+            <span [ngClass]="{'favorite': city && city.isFav}">
+                {{ city.cityInfo.idCityName }}
+                <br><small>Is Favorite: {{ city.cityInfo.isFav }}</small>
+            </span>
+        </span>
+    </span>
+</span>
+<div *ngIf="_cityDetailes | async as cityDetail">
+    <span *ngIf="cityDetail">
+        <span *ngIf="cityDetail  !== undefined && cityDetail !== null && cityDetail.cityInfo !== undefined">
+            {{ cityDetail.cityInfo.idCityName }}
+            <span *ngIf="cityDetail">
+                <span>
+                    {{ cityDetail.metricValue }}
+                </span>
+                <span>
+                    {{ cityDetail.description }}
+                </span>
+            </span>
+        </span>
+    </span>
+</div>

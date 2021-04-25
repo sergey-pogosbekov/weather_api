@@ -1,0 +1,58 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+        <h1>My Weather App Example</h1>
+        <p>Just a simple favourites/request to weather api app created using ngrx</p>
+    </div>
+  </div>
+
+  <div class="row" >
+
+    <div class="col-md-3">
+      <h5>Search (filter) cities:</h5>
+
+      <form (submit)="onSubmit(form.value.name)" [formGroup]="form">
+          <input type="hidden" class="form-control" id="id" formControlName="id"/>
+          <input type="hidden" class="form-control" id="isFav" formControlName="isFav"/>
+          <div class="form-group">
+            <input type="text" class="form-control" id="name" placeholder="city name" formControlName="name"/>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Find cities</button>
+      </form>
+      
+    </div>
+<div class="col-md-9" *ngIf="isFavs == false"> <
+    <div>
+      Filtered cities (filter):
+      <app-todos #citys [isFav]="isFavs" (emitDetailes)="codeTo($event)"></app-todos>
+    </div>
+</div>
+<div class="col-md-9" *ngIf="isFavs">
+    <div class="col-md-9">
+      Favorited cities:
+      <app-todos #todos [isFav]="isFavs" (emitDetailes)="codeTo($event)"></app-todos>
+    </div>
+
+  </div>
+
+</div>
+<div class="selectedWeather">
+  <div *ngIf=" eventEmitter | async as selectedTodo">
+    <div *ngIf="selectedTodo !==undefined">
+      <!---->
+      <div *ngIf="selectedTodo">
+        <div *ngIf="selectedTodo !== null && selectedTodo !== undefined">
+          Selected weather of city:
+          <div>
+            <app-todo [cityDetailsObs]="selectedTodo"></app-todo>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div><input type="checkbox" (change)="switchFavs()" />{{ !isFavs? 'Show Favorites': 'Search ..' }}</div>
