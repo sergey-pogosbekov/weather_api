@@ -22,7 +22,7 @@
       </form>
       
     </div>
-<div class="col-md-9" *ngIf="isFavs == false"> <
+<div class="col-md-9" *ngIf="isFavs == false">
     <div>
       Filtered cities (filter):
       <app-todos #citys [isFav]="isFavs" (emitDetailes)="codeTo($event)"></app-todos>

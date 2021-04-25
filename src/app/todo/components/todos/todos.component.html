@@ -5,15 +5,14 @@
                 <tr>
                     <th width="50"></th>
                     <th>City name</th>
-                    <th>Weather Temperature</th>
-                    <th>Date of measure</th>
+                    <th>Weather Controls</th>
                 </tr>
             </thead>
             <tbody  >
                 <tr *ngFor="let todo of ct" >
                     <td>
                         <div >
-                            <input *ngIf="todo.cityInfo" type="checkbox" [checked]="todo.cityInfo.isFav" (change)="changeStatus(todo.cityInfoId)" /> 
+                            <!-- <input *ngIf="todo.cityInfo" type="checkbox" [checked]="todo.cityInfo.isFav" (change)="changeStatus(todo.cityInfoId)" />  -->
                         </div>
                     </td>
                     <td>
@@ -46,18 +45,19 @@
         <tr>
             <th width="50"></th>
             <th>City name</th>
-            <th>Weather Temperature</th>
-            <th>Date of measure</th>
+            <th>Favourite's actions</th>
+            <!-- <th>Weather Temperature</th>
+            <th>Date of measure</th> -->
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let todo of fv">
             <td *ngIf="todo != undefined">
                 <div >
-                    <div >
+                    <!-- <div >
                         <input *ngIf="todo.cityInfo" type="checkbox" [checked]="todo.cityInfo.isFav"
                             (change)="changeStatus(todo.cityInfoId)" />
-                    </div>
+                    </div> -->
                 </div>
             </td>
             <td>
